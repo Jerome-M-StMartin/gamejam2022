@@ -10,3 +10,6 @@ func _process(delta):
 
 func on_message_delivered():
 	pass
+
+func on_pickup():
+	pass
