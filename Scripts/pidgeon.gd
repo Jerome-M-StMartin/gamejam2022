@@ -1,16 +1,39 @@
 extends RigidBody2D
 
-export var gravity = Vector2(0, 9.8)
-export var flap_vec = Vector2(0, -20)
+export var G = Vector2(0, 9.8)
+export var FLAP_VEC = Vector2(0, -300)
+export var MAX_VEL = 600
+export var MASS = 1
+
+enum SpriteMode { UNLADEN, LADEN }
+export(SpriteMode) var sprite_mode = SpriteMode.UNLADEN
 
 var flap: bool = false
+var move: Vector2 = Vector2(0,0)
+
+func _ready():
+	self.mass = MASS;
 
 func _input(event):
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_just_pressed("ui_up"):
 		flap = true
+		return
+	
+	if Input.is_action_just_pressed("ui_left"):
+		move = Vector2(-100, 0)
+	
+	if Input.is_action_just_pressed("ui_right"):
+		move = Vector2(100, 0)
 
 func _physics_process(delta):
 	if flap:
-		.add_central_force(flap_vec)
+		.apply_central_impulse(FLAP_VEC)
+		flap = false
 		return
-	.add_central_force(gravity)
+	
+	.apply_central_impulse(move)
+	.apply_central_impulse(G)
+	move = Vector2(0,0)
+
+func _integrate_forces(state):
+	state.linear_velocity = Vector2(0, clamp(self.linear_velocity[1], -MAX_VEL, MAX_VEL))	
