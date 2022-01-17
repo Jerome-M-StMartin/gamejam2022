@@ -13,8 +13,7 @@
 position = Vector2( 493, 204 )
 
 [node name="Ocean" type="Sprite" parent="."]
-position = Vector2( 512, 300 )
-scale = Vector2( 1.6, 1.66667 )
+position = Vector2( 320, 180 )
 z_index = -1
 texture = ExtResource( 3 )
 script = ExtResource( 4 )
