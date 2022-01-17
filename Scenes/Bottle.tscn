@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/bottle.gd" type="Script" id=1]
+[ext_resource path="res://Assets/small_potions.png" type="Texture" id=2]
 
-[node name="Bottle" type="Node2D"]
+[sub_resource type="CircleShape2D" id=1]
+radius = 8.0
+
+[node name="Bottle" type="RigidBody2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_Bottle_body_entered"]
