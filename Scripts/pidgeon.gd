@@ -47,7 +47,7 @@ func _integrate_forces(state):
 								clamp(self.linear_velocity[0], -MAX_VEL, MAX_VEL),
 								clamp(self.linear_velocity[1], -MAX_VEL, MAX_VEL)
 							)
-	if position.y >= get_viewport().size.y - 15: #Keep us above the water
+	if position.y >= get_viewport().size.y - 35: #Keep us above the water
 		if !mode == MODE_KINEMATIC:
 			mode = MODE_KINEMATIC
 			linear_damp = 100
