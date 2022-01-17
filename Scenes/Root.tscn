@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/SpeedIndicator.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Pidgeon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://test_waves.png" type="Texture" id=3]
+
+[node name="Root" type="Node2D"]
+
+[node name="Pidgeon" parent="." instance=ExtResource( 2 )]
+
+[node name="SpeedIndicator" parent="." instance=ExtResource( 1 )]
+position = Vector2( 493, 204 )
+
+[node name="Ocean" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Ocean"]
+position = Vector2( 479, 262 )
+texture = ExtResource( 3 )
