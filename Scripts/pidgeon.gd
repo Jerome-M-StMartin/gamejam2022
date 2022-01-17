@@ -10,10 +10,12 @@ export(SpriteMode) var sprite_mode = SpriteMode.UNLADEN
 var flap: bool = false
 var move: Vector2 = Vector2(0,0)
 
+func _ready():
+	gravity_scale = 0
+
 func _input(event):
 	if Input.is_action_just_pressed("ui_up"):
 		flap = true
-		return
 	
 	if Input.is_action_just_pressed("ui_left"):
 		move = Vector2(-100, 0)
@@ -23,6 +25,7 @@ func _input(event):
 
 func _physics_process(delta):
 	if flap:
+		linear_damp = -1
 		.apply_central_impulse(FLAP_VEC)
 		flap = false
 		return
@@ -31,8 +34,11 @@ func _physics_process(delta):
 	.apply_central_impulse(G)
 	move = Vector2(0,0)
 
+
 func _integrate_forces(state):
 	state.linear_velocity = Vector2(
 								clamp(self.linear_velocity[0], -MAX_VEL, MAX_VEL),
 								clamp(self.linear_velocity[1], -MAX_VEL, MAX_VEL)
 							)
+	if position.y >= get_viewport().size.y:
+		linear_damp = 100
