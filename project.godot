@@ -21,6 +21,11 @@ window/size/height=360
 window/size/test_width=640
 window/size/test_height=360
 window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/AsepriteWizard/plugin.cfg" )
 
 [input]
 
