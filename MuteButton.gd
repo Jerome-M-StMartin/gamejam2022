@@ -15,9 +15,7 @@ func _ready():
 #func _process(delta):
 #	pass
 
-
-func _on_MuteButton_toggled(button_pressed):
-	print("pressed")
-	$BackgroundMusic.stop
-
-
+func _on_MuteButton_pressed():
+	print("on_mutebutton whatever")
+	var music = .get_parent().get_node("BackgroundMusic")
+	music.playing = !music.playing
