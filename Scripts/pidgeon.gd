@@ -7,13 +7,20 @@ export var G = Vector2(0, 9.8)
 export var FLAP_VEC = Vector2(0, -300)
 export var MAX_VEL = 500
 
-var flap: bool = false
+var flap: bool = true
 var move: Vector2 = Vector2(0,0)
+var bobbing = false
+
+var have_bottle = false
+var bottle;
+
+signal bottle_dropped(new_pos)
 
 func _ready():
 	gravity_scale = 0
+	mode = MODE_CHARACTER
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("ui_up"):
 		flap = true
 	
@@ -23,11 +30,18 @@ func _input(event):
 	if Input.is_action_just_pressed("ui_right"):
 		move = Vector2(100, 0)
 
-func _physics_process(delta):
+func _process(_delta):
+	if have_bottle:
+		bottle.position = self.position + Vector2(0, 15)
+
+func _physics_process(_delta):
 	if flap:
-		mode = MODE_RIGID
-		$Wave.stop_all()
-		linear_damp = -1
+		if bobbing:
+			bobbing = false
+			var tween = $AnimatedSprite.get_child(0)
+			if is_instance_valid(tween):
+				tween.queue_free()
+			linear_damp = -1
 		.apply_central_impulse(FLAP_VEC)
 		flap = false
 		return
@@ -48,20 +62,29 @@ func _integrate_forces(state):
 								clamp(self.linear_velocity[1], -MAX_VEL, MAX_VEL)
 							)
 	if position.y >= get_viewport().size.y - 35: #Keep us above the water
-		if !mode == MODE_KINEMATIC:
-			mode = MODE_KINEMATIC
+		if !bobbing:
+			bobbing = true
 			linear_damp = 100
-			tween_start_pos = self.position
-			_start_tween(tween_start_pos, tween_start_pos + amplitude)
+			var tween = Tween.new()
+			$AnimatedSprite.add_child(tween)
+			tween.connect("tween_completed", self, "_on_Wave_tween_completed")
+			tween_start_pos = $AnimatedSprite.position
+			_start_tween(null, tween_start_pos + amplitude)
 
 func _on_Bottle_pickup():
-	$Sprite.visible = !$Sprite.visible
-	$Sprite2.visible = !$Sprite2.visible
+	bottle = .get_parent().get_node("Bottle")
+	have_bottle = true
+	
+func on_drop_bottle():
+	have_bottle = false
+	bottle = null
+	emit_signal("bottle_dropped", self.positon + Vector2(0, 15))
 
 func _start_tween(start, end):
-	$Wave.interpolate_property(self, "position", start, end, Tween.TRANS_SINE, 1)
-	$Wave.start()
+	var tween = $AnimatedSprite.get_child(0)
+	tween.interpolate_property($AnimatedSprite, "position", start, end, Tween.TRANS_SINE, 1)
+	tween.start()
 
-func _on_Wave_tween_completed(object, key):
+func _on_Wave_tween_completed(_object, _key):
 	amplitude[1] *= -1
-	_start_tween(null, self.position + amplitude)
+	_start_tween(null, tween_start_pos + amplitude)
