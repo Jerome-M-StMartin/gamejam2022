@@ -54,15 +54,9 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "New Anim"
-frame = 4
+
+frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-
-[node name="Sprite2" type="Sprite" parent="."]
-visible = false
-
-[node name="Wave" type="Tween" parent="."]
-
-[connection signal="tween_completed" from="Wave" to="." method="_on_Wave_tween_completed"]
