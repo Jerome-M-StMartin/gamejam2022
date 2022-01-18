@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/waves.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/hazard_spawner.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Brave New Ocean Loopable.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Assets/waves.png" type="Texture" id=5]
+[ext_resource path="res://Assets/sky.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Bottle.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/GameRunning.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Pidgeon.tscn" type="PackedScene" id=9]
+
+[node name="GameRunning" type="Node"]
+script = ExtResource( 8 )
+
+[node name="Pidgeon" parent="." instance=ExtResource( 9 )]
+
+[node name="Bottle" parent="." instance=ExtResource( 7 )]
+position = Vector2( 200, 270 )
+
+[node name="Ocean" type="Sprite" parent="."]
+position = Vector2( 320, 180 )
+z_index = -1
+texture = ExtResource( 5 )
+script = ExtResource( 1 )
+scroll_speed = 64
+
+[node name="Sprite" type="Sprite" parent="Ocean"]
+position = Vector2( 640, 0 )
+texture = ExtResource( 5 )
+
+[node name="Sky" type="Sprite" parent="."]
+position = Vector2( 320, 180 )
+z_index = -2
+texture = ExtResource( 6 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 0.5
+
+[node name="HazardSpawner" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="HazardSpawner"]
+
+[connection signal="body_entered" from="Bottle" to="Bottle" method="_on_Bottle_body_entered"]
+[connection signal="bottle_pickup" from="Bottle" to="Pidgeon" method="_on_Bottle_pickup"]
+[connection signal="timeout" from="HazardSpawner/Timer" to="HazardSpawner" method="_on_Timer_timeout"]

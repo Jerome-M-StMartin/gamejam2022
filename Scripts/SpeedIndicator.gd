@@ -17,4 +17,4 @@ func _process(delta):
 		x = -1
 	
 	$Sprite.scale = Vector2(x * y_ratio, y_ratio)
-	$Sprite.rotation_degrees = (Vector2(-x_vel, -y_vel).angle() * 57.29) - 90
+	$Sprite.rotation_degrees = (Vector2(x_vel, y_vel).angle() * 57.29) + 180
