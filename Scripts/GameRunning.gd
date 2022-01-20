@@ -19,9 +19,8 @@ func _ready():
 func _process(delta):
 	
 	if new_bottle != null:
-		var bottle = new_bottle.instance()
-		bottle.position = new_pos
-		.add_child(bottle)
+		.add_child(new_bottle.instance())
+		.get_node("Bottle").position = new_pos
 		new_bottle = null
 	
 	var time_display = $TimeToMailbox
@@ -38,7 +37,7 @@ func on_bottle_dropped(pos):
 
 func on_timeout_spawn_mailbox():
 	.add_child(mailbox.instance())
-	$Mailbox.position.x += 185
+	$Mailbox.position.x = get_viewport().size.x + 100
 	mailbox_instanced = true
 
 func scale_sky_sprite():
@@ -52,7 +51,7 @@ func scale_sky_sprite():
 func move_mailbox_leftward(delta):
 	if mailbox_instanced:
 		var pos = $Mailbox.position.x
-		if pos > 540:
+		if pos > get_viewport().size.x - 100:
 			$Mailbox.position.x -= 16 * delta
 		else:
-			$Mailbox.position.x = 540
+			$Mailbox.position.x = get_viewport().size.x - 100

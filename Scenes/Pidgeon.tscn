@@ -43,7 +43,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30, 30 )
+extents = Vector2( 27.5, 25.5 )
 
 [node name="Pidgeon" type="RigidBody2D"]
 position = Vector2( 420, 180 )
@@ -56,10 +56,10 @@ __meta__ = {
 z_index = 2
 frames = SubResource( 2 )
 animation = "New Anim"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2.5, 2.5 )
 shape = SubResource( 1 )
 
 [node name="BottleSprite" type="Sprite" parent="."]
