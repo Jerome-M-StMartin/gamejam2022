@@ -1,16 +1,20 @@
 extends Node2D
 
-var start_y: int = 0
+signal drop_bottle
+
+var speed: int
 
 func _ready():
-	self.position.x = get_viewport().size.x + 50
-	.connect("drop_bottle", get_tree().get_root().get_node("Pidgeon"), "on_drop_bottle")
+	self.speed = 64 + randi() % 128
+	self.position.y = randi() % 290
+	self.position.x = get_viewport().size.x + 70
+	.connect("drop_bottle", .get_parent().get_parent().get_node("Pidgeon"), "on_drop_bottle")
 
 func _process(delta):
-	self.position.x -= 16 * delta
+	self.position.x -= speed * delta
 	if self.position.x < -20:
 		self.queue_free()
 	
 func _on_body_entered(body):
-	if body.name == "Pidegon":
-		emit_signal("drop_bottle", body)
+	if body.name == "Pidgeon":
+		emit_signal("drop_bottle")

@@ -13,15 +13,19 @@
 script = ExtResource( 8 )
 
 [node name="Pidgeon" parent="." instance=ExtResource( 9 )]
+position = Vector2( 240, 69 )
 
 [node name="Bottle" parent="." instance=ExtResource( 7 )]
-position = Vector2( 200, 270 )
+position = Vector2( 196, 140 )
 
 [node name="Ocean" type="Sprite" parent="."]
 position = Vector2( 320, 180 )
 z_index = -1
 texture = ExtResource( 5 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 scroll_speed = 64
 
 [node name="Sprite" type="Sprite" parent="Ocean"]
@@ -30,8 +34,11 @@ texture = ExtResource( 5 )
 
 [node name="Sky" type="Sprite" parent="."]
 position = Vector2( 320, 180 )
-z_index = -2
+z_index = -3
 texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
@@ -42,6 +49,15 @@ script = ExtResource( 2 )
 
 [node name="Timer" type="Timer" parent="HazardSpawner"]
 
-[connection signal="body_entered" from="Bottle" to="Bottle" method="_on_Bottle_body_entered"]
-[connection signal="bottle_pickup" from="Bottle" to="Pidgeon" method="_on_Bottle_pickup"]
+[node name="TimeToMailbox" type="RichTextLabel" parent="."]
+modulate = Color( 0.027451, 0, 1, 1 )
+margin_left = 507.0
+margin_top = 16.0
+margin_right = 623.0
+margin_bottom = 31.0
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="timeout" from="HazardSpawner/Timer" to="HazardSpawner" method="_on_Timer_timeout"]

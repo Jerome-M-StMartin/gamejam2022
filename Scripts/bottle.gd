@@ -12,6 +12,10 @@ func _ready():
 	contact_monitor = true
 	contacts_reported = 3
 	gravity_scale = 0
+	
+	.connect("bottle_pickup", .get_parent().get_node("Pidgeon"), "on_bottle_pickup")
+	.connect("body_entered", self, "_on_bottle_body_entered")
+	
 	var message: Node = Node.new()
 	message.name = "Message"
 	add_child(message, true)
@@ -28,21 +32,17 @@ func _integrate_forces(_state):
 			_start_tween(null, tween_start_pos + amplitude)
 	else:
 		bobbing = false
+		$Sprite.position = Vector2(0,0)
 
 func _physics_process(_delta):
 	if !bobbing:
 		.apply_central_impulse(G)
 
-func on_message_delivered():
-	pass
-
-func _on_Bottle_dropped(new_pos):
-	self.position = new_pos
-
-func _on_Bottle_body_entered(body):
-	if body.name == "Pidgeon":
+func _on_bottle_body_entered(body):
+	if bobbing and body.name == "Pidgeon":
 		emit_signal("bottle_pickup")
 		bobbing = false
+		self.queue_free()
 
 func _start_tween(start, end):
 	var tween = $Sprite.get_child(0)

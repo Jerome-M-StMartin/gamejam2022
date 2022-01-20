@@ -19,6 +19,7 @@ signal bottle_dropped(new_pos)
 func _ready():
 	gravity_scale = 0
 	mode = MODE_CHARACTER
+	.connect("bottle_dropped", get_parent(), "on_bottle_dropped")
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_up"):
@@ -30,9 +31,9 @@ func _input(_event):
 	if Input.is_action_just_pressed("ui_right"):
 		move = Vector2(100, 0)
 
-func _process(_delta):
-	if have_bottle:
-		bottle.position = self.position + Vector2(0, 15)
+#func _process(_delta):
+#	if have_bottle:
+#		bottle.position = self.position + Vector2(0, 15)
 
 func _physics_process(_delta):
 	if flap:
@@ -42,6 +43,10 @@ func _physics_process(_delta):
 			if is_instance_valid(tween):
 				tween.queue_free()
 			linear_damp = -1
+			$AnimatedSprite.position = Vector2(0,0)
+			
+			get_parent().get_node("MailboxTimer").set_paused(false)
+			
 		.apply_central_impulse(FLAP_VEC)
 		flap = false
 		return
@@ -70,15 +75,21 @@ func _integrate_forces(state):
 			tween.connect("tween_completed", self, "_on_Wave_tween_completed")
 			tween_start_pos = $AnimatedSprite.position
 			_start_tween(null, tween_start_pos + amplitude)
+			
+			.get_parent().get_node("MailboxTimer").set_paused(true)
 
-func _on_Bottle_pickup():
+func on_bottle_pickup():
 	bottle = .get_parent().get_node("Bottle")
 	have_bottle = true
+	$BottleSprite.visible = true
+	.get_parent().get_node("MailboxTimer").set_paused(false)
 	
 func on_drop_bottle():
+	if have_bottle:
+		emit_signal("bottle_dropped", position + Vector2(0, 15))
+	$BottleSprite.visible = false
 	have_bottle = false
 	bottle = null
-	emit_signal("bottle_dropped", self.positon + Vector2(0, 15))
 
 func _start_tween(start, end):
 	var tween = $AnimatedSprite.get_child(0)
