@@ -7,7 +7,6 @@ var new_bottle = null
 var new_pos: Vector2
 
 func _ready():
-	$AudioStreamPlayer.playing = true
 	var mailbox_timer = Timer.new()
 	mailbox_timer.name = "MailboxTimer"
 	mailbox_timer.wait_time = 2.0
