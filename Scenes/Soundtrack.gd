@@ -1,4 +1,4 @@
-extends Timer
+extends AudioStreamPlayer
 
 
 # Declare member variables here. Examples:
@@ -14,7 +14,3 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-
-
-func _on_Transition_timeout():
-	get_tree().change_scene("res://Scenes/StartScreen.tscn")
