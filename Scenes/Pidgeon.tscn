@@ -56,6 +56,9 @@ __meta__ = {
 z_index = 2
 frames = SubResource( 2 )
 animation = "New Anim"
+
+frame = 4
+
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
