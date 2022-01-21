@@ -8,3 +8,6 @@ func on_body_entered(body):
 			body.have_bottle = false
 			body.bottle = null
 			body.get_node("BottleSprite").visible = false
+			$Noise.play()
+			$Open.visible = false
+			$BottleIn.visible = true
