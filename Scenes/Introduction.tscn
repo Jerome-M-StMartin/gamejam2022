@@ -28,13 +28,13 @@ __meta__ = {
 
 [node name="Introduction" type="RichTextLabel" parent="."]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 112.0
-margin_top = 110.0
-margin_right = 350.0
-margin_bottom = 282.0
+margin_left = 107.0
+margin_top = 105.0
+margin_right = 347.0
+margin_bottom = 290.0
 bbcode_enabled = true
-bbcode_text = "In [i]\"Sincerely, Mr. S\"[/i], you play as a seabird with a knack for exploring. As you are a bird and cannot read, you will need to pick it up and take it back to your mailbox. Adverse weather makes it hard to hold onto but it might important! Have a safe flight."
-text = "In \"Sincerely, Mr. S\", you play as a seabird with a knack for exploring. You might find a message in a bottle along the way. As you are a bird and cannot read, you will need to pick it up and take it back to your mailbox. Adverse weather makes it hard to hold onto but it maybe important! Have a safe flight."
+bbcode_text = "In [i]Sincerely, Mr. S[/i], you play as a seabird with a knack for exploring. You might find a message in a bottle along the way. As you are a bird and cannot read, you will need to pick it up and take it back to your mailbox. Adverse weather makes it hard to hold onto but it maybe important! Have a safe flight."
+text = "In Sincerely, Mr. S, you play as a seabird with a knack for exploring. You might find a message in a bottle along the way. As you are a bird and cannot read, you will need to pick it up and take it back to your mailbox. Adverse weather makes it hard to hold onto but it maybe important! Have a safe flight."
 __meta__ = {
 "_edit_use_anchors_": false
 }

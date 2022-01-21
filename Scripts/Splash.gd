@@ -2,7 +2,8 @@ extends Node2D
 
 
 onready var t = get_child(1)
-var start_scene = preload("res://Scenes/StartScreen.tscn")
+var card_scene = preload("res://Scenes/Cards.tscn")
+var start_scene = preload("res://Scenes/GameRunning.tscn")
 
 func _ready():
 	#check if moving to next level or if game was just launched
@@ -14,4 +15,4 @@ func _ready():
 
 func _on_Transition_timeout():
 	queue_free()
-	get_parent().add_child(start_scene.instance())
+	get_parent().add_child(card_scene.instance())
