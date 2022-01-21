@@ -2,7 +2,6 @@ extends Node2D
 
 
 func _on_MuteButton_pressed():
-	print("on_mutebutton whatever")
 	var music = .get_parent().get_child(0)
 	music.playing = !music.playing
 

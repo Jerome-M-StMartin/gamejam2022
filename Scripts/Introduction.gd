@@ -6,7 +6,7 @@ extends Node2D
 # var b = "text"
 
 onready var t = get_child(1)
-var start_scene = preload("res://Scenes/GameRunning.tscn")
+var game_running = preload("res://Scenes/GameRunning.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,6 +20,5 @@ func _ready():
 
 
 func _on_NextButton_pressed():
-	print("yep!")
 	queue_free()
-	get_parent().add_child(start_scene.instance())
+	get_parent().add_child(game_running.instance())
