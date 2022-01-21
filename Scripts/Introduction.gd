@@ -1,23 +1,13 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-onready var t = get_child(1)
 var game_running = preload("res://Scenes/GameRunning.tscn")
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+func _input(_event):
+	var up = Input.is_action_just_pressed("ui_up")
+	var left = Input.is_action_just_pressed("ui_left")
+	var right = Input.is_action_just_pressed("ui_right")
+	if up or left or right:
+		_on_NextButton_pressed()
 
 func _on_NextButton_pressed():
 	queue_free()

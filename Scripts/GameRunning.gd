@@ -1,13 +1,17 @@
 extends Node
 
+export var difficulty = 0
+
 var mailbox = preload("res://Scenes/Mailbox.tscn")
 var mailbox_instanced = false
-var mailbox_spawn_time = 1
+var mailbox_spawn_time = 10
 
 var new_bottle = null
 var new_pos: Vector2
 
 func _ready():
+	difficulty = get_parent().get_node("Story").msg_idx
+	mailbox_spawn_time += difficulty * 10
 	var mailbox_timer = Timer.new()
 	mailbox_timer.name = "MailboxTimer"
 	mailbox_timer.wait_time = mailbox_spawn_time
@@ -53,6 +57,6 @@ func move_mailbox_leftward(delta):
 	if mailbox_instanced:
 		var pos = $Mailbox.position.x
 		if pos > get_viewport().size.x - 100:
-			$Mailbox.position.x -= 16 * delta
+			$Mailbox.position.x -= 32 * delta
 		else:
 			$Mailbox.position.x = get_viewport().size.x - 100

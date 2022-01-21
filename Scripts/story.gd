@@ -34,7 +34,6 @@ func next_message():
 		
 		#spawn "close message" button
 		var b = $Button
-		b.set_text("Close Message")
 		b.connect("pressed", self, "on_finished_reading")
 		b.visible = true
 		
@@ -58,7 +57,9 @@ func on_finished_reading():
 		var n_nodes = get_parent().get_child_count()
 		get_parent().get_child(n_nodes - 1).queue_free()
 		get_parent().add_child(game_running.instance(), true)
+		
 	else:
+		.get_parent().get_node("Soundtrack").queue_free()
 		var end_scene = load("res://Scenes/GameEndScene.tscn")
 		var n_nodes = get_parent().get_child_count()
 		get_parent().get_child(n_nodes - 1).queue_free()
