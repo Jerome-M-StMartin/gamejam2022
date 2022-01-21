@@ -16,4 +16,17 @@ wait_time = 4.643
 one_shot = true
 autostart = true
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 52.0
+margin_top = 331.0
+margin_right = 577.0
+margin_bottom = 349.0
+bbcode_enabled = true
+bbcode_text = "[u]Main Soundtrack by 'Wolfgang'[/u]: https://opengameart.org/content/ocean-theme"
+text = "Main Soundtrack by 'Wolfgang': https://opengameart.org/content/ocean-theme"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="timeout" from="Transition" to="." method="_on_Transition_timeout"]

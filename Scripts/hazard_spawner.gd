@@ -15,7 +15,7 @@ func _on_Timer_timeout():
 	var difficulty = .get_parent().difficulty
 	select_hazard(difficulty)
 	.add_child(hazard)
-	spawn_interval = rand_range(2.5 - (difficulty / 4), 6.0 - (difficulty / 4))
+	spawn_interval = rand_range(2.5 - (difficulty / 4), 6.0 - (difficulty / 2))
 	$Timer.start(spawn_interval)
 
 func select_hazard(difficulty):

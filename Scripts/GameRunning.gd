@@ -11,7 +11,7 @@ var new_pos: Vector2
 
 func _ready():
 	difficulty = get_parent().get_node("Story").msg_idx
-	mailbox_spawn_time += difficulty * 1
+	mailbox_spawn_time += difficulty * 10
 	var mailbox_timer = Timer.new()
 	mailbox_timer.name = "MailboxTimer"
 	mailbox_timer.wait_time = mailbox_spawn_time
@@ -51,7 +51,7 @@ func scale_sky_sprite():
 	sky.scale.x = window.x / sky.texture.get_size().x
 	sky.scale.y = window.y / sky.texture.get_size().y
 	sky.position.x = window.x / 2
-	sky.position.y = window.y / 2
+	sky.position.y = window.y / 2 - 2
 
 func move_mailbox_leftward(delta):
 	if mailbox_instanced:

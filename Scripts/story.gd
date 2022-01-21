@@ -65,6 +65,6 @@ func on_finished_reading():
 		get_parent().get_child(n_nodes - 1).queue_free()
 		get_parent().add_child(end_scene.instance())
 
-#func _input(_event):
-#	if Input.is_action_just_pressed("ui_down"):
-#		next_message()
+func _input(_event):
+	if Input.is_action_just_pressed("ui_down"):
+		next_message()

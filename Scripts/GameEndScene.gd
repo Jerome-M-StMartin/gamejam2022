@@ -1,13 +1,13 @@
 extends Node2D
 
 func _process(_delta):
-	var window_size = get_viewport().size()
-	var texture_size = $EndScreen.get_size()
-	$EndScreen.scale.x = window_size.x / texture_size.x
-
-func end_game():
-	get_tree().quit()
-
+	var window_size = get_viewport().get_size()
+	var texture_size = $EndScreen.texture.get_size()
+	var img = $EndScreen
+	img.scale.x = window_size.x / texture_size.x
+	img.scale.y = window_size.y / texture_size.y
+	img.position.x = window_size.x / 2
+	img.position.y = window_size.y / 2
 
 func quit_game():
-	pass # Replace with function body.
+	get_tree().quit()
