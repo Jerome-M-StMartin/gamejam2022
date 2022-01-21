@@ -7,7 +7,7 @@ export var G = Vector2(0, 9.8)
 export var FLAP_VEC = Vector2(0, -300)
 export var MAX_VEL = 500
 
-var flap: bool = true
+var flap: bool = false
 var move: Vector2 = Vector2(0,0)
 var bobbing = false
 
@@ -24,6 +24,7 @@ func _ready():
 func _input(_event):
 	if Input.is_action_just_pressed("ui_up"):
 		flap = true
+		$Chirp.play()
 	
 	if Input.is_action_just_pressed("ui_left"):
 		move = Vector2(-100, 0)

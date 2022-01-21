@@ -30,6 +30,7 @@ func _physics_process(delta):
 	#Prevent sinking
 	if position.y >= get_viewport().size.y - 50:
 		if !bobbing:
+			$Plop.play()
 			G = 98
 			bobbing = true
 			$Sprite.add_child(Tween.new())

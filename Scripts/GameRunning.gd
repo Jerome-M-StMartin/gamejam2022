@@ -11,7 +11,7 @@ var new_pos: Vector2
 
 func _ready():
 	difficulty = get_parent().get_node("Story").msg_idx
-	mailbox_spawn_time += difficulty * 10
+	mailbox_spawn_time += difficulty * 1
 	var mailbox_timer = Timer.new()
 	mailbox_timer.name = "MailboxTimer"
 	mailbox_timer.wait_time = mailbox_spawn_time
