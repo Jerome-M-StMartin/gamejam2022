@@ -45,7 +45,8 @@ func _physics_process(_delta):
 			linear_damp = -1
 			$AnimatedSprite.position = Vector2(0,0)
 			
-			get_parent().get_node("MailboxTimer").set_paused(false)
+			if have_bottle:
+				get_parent().get_node("MailboxTimer").set_paused(false)
 			
 		.apply_central_impulse(FLAP_VEC)
 		flap = false
@@ -76,7 +77,8 @@ func _integrate_forces(state):
 			tween_start_pos = $AnimatedSprite.position
 			_start_tween(null, tween_start_pos + amplitude)
 			
-			.get_parent().get_node("MailboxTimer").set_paused(true)
+			if have_bottle:
+				.get_parent().get_node("MailboxTimer").set_paused(true)
 
 func on_bottle_pickup():
 	bottle = .get_parent().get_node("Bottle")

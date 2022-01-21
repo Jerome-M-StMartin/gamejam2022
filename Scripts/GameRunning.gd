@@ -2,6 +2,7 @@ extends Node
 
 var mailbox = preload("res://Scenes/Mailbox.tscn")
 var mailbox_instanced = false
+var mailbox_spawn_time = 1
 
 var new_bottle = null
 var new_pos: Vector2
@@ -9,7 +10,7 @@ var new_pos: Vector2
 func _ready():
 	var mailbox_timer = Timer.new()
 	mailbox_timer.name = "MailboxTimer"
-	mailbox_timer.wait_time = 2.0
+	mailbox_timer.wait_time = mailbox_spawn_time
 	mailbox_timer.one_shot = true
 	.add_child(mailbox_timer, true)
 	$MailboxTimer.start()

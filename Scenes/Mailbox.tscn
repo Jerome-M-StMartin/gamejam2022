@@ -13,6 +13,7 @@ extents = Vector2( 35.5, 22.5 )
 
 [node name="Mailbox" type="Node2D"]
 position = Vector2( 540, 180 )
+z_index = -2
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_lock_": true
