@@ -41,6 +41,7 @@ margin_top = -1.52588e-05
 margin_right = 0.23996
 margin_bottom = -3.56
 icon = SubResource( 1 )
+flat = true
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -49,7 +50,6 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Button"]
 position = Vector2( 55, 17 )
 frames = SubResource( 4 )
-frame = 1
 playing = true
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
