@@ -13,6 +13,15 @@ func _ready():
 	
 	t.start(3)
 
+func _process(_delta):
+	var window_size = get_viewport().get_size()
+	var texture_size = $StudioSplash.texture.get_size()
+	var img = $StudioSplash
+	img.scale.x = window_size.x / texture_size.x
+	img.scale.y = window_size.y / texture_size.y
+	img.position.x = window_size.x / 2
+	img.position.y = window_size.y / 2
+
 func _on_Transition_timeout():
 	queue_free()
 	get_parent().add_child(card_scene.instance())

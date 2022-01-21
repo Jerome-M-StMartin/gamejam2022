@@ -33,8 +33,8 @@ margin_top = 105.0
 margin_right = 347.0
 margin_bottom = 290.0
 bbcode_enabled = true
-bbcode_text = "In [i]Sincerely, Mr. S[/i], you play as a seabird with a knack for exploring. You might find a message in a bottle along the way. As you are a bird and cannot read, you will need to pick it up and take it back to your mailbox. Adverse weather makes it hard to hold onto but it maybe important! Have a safe flight."
-text = "In Sincerely, Mr. S, you play as a seabird with a knack for exploring. You might find a message in a bottle along the way. As you are a bird and cannot read, you will need to pick it up and take it back to your mailbox. Adverse weather makes it hard to hold onto but it maybe important! Have a safe flight."
+bbcode_text = "In [i]Sincerely, Mr. S[/i], you play as a seabird with a knack for exploring. You might find a message in a bottle along the way. As you are a bird and cannot read, you will need to pick it up and take it back to your mailbox. Adverse weather makes it hard to hold onto but it may be important! Have a safe flight."
+text = "In Sincerely, Mr. S, you play as a seabird with a knack for exploring. You might find a message in a bottle along the way. As you are a bird and cannot read, you will need to pick it up and take it back to your mailbox. Adverse weather makes it hard to hold onto but it may be important! Have a safe flight."
 __meta__ = {
 "_edit_use_anchors_": false
 }
